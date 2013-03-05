@@ -6,6 +6,7 @@ import scipy
 from scipy.optimize import curve_fit
 from scipy.linalg import eigh
 
+
 table = []
 theta = []
 var_gravity = []
@@ -22,27 +23,13 @@ for filename in os.listdir('hw4_data/' ):
         y = []
         nomarch = (filename.replace('.dat','')).split('_')
 
-
         path = os.path.expanduser('hw4_data/' + filename)
-
        
 	coso = open(path, 'r').readlines()
 	
-	datos = loadtxt(path)
+	datos = numpy.loadtxt(path)
 
-        # le da el formato correcto a la informacion dentro del archivo
-        #for line in coso:
-
-           # datos.append(line.split())
-	    
-
-        quitar = ['#','time','pos_x','pos_y', '[second]', '[meter]']
-	
-	for i in range (len(quitar)):
-	     datos.remove(quitar[i])
-
-       # for line in datos:
-
+      
         # crea los arrays con los datos de los archivos
 	tiempo=datos[:,0]
 	x=datos[:,1]
@@ -55,11 +42,65 @@ for filename in os.listdir('hw4_data/' ):
         # agrega a la lista una tupla con la informacion del archivo
         table.append((int(nomarch[1]),float(nomarch[3]),float(ecx[0]),float(ecy[1]),(-2.0*float(ecy[0]))))
 
+		
+		
 
         # Organiza los datos en orden creciente respecto al angulo
-        # table.sort(key=lambda tup: tup[1])
-
-
+	table.sort(key=lambda tup: tup[1])
+	
+	# crea un archivo con los datos necesarios
+	for row in table:
+		for ht in row:
+			data.write( '%f ' % (ht))
+		data.write('\n')
 
 print 'information exported sucessfully in data.dat'
+
+
+F=[]
+gmd = []
+angulo = []
+gmedia = []
+cont = 0
+cont2 = 0
+
+for row in table:	       
+	if row[1] not in angulo:
+	       angulo.append(row[1])
+	
+
+for ang in angulo:
+	cont = 0.0	
+	for line in table:
+		if (line[1] == ang):
+			cont += line[4]
+
+       	cont /= 6.0
+       	gmedia.append(cont)
+
+
+for g in gmedia:
+	F.append(1 -((g)/(9.81)))
+
+
+
+	
+
+
+
+
+
+
+
+	      
+
+
+
+			    
+
+
+		
+	
+
+
 
