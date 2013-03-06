@@ -77,11 +77,21 @@ for ang in angulo:
 
        	cont /= 6.0
        	gmedia.append(cont)
+       	
+
+# grafica gmedia vs theta y lo guarda en el archivo 'gmedia_vs_theta.png'
+pylab.plot(angulo, gmedia, '.')
+pylab.xlabel('the (degrees)')
+pylab.ylabel('gmedia (m/s^2)')
+pylab.title('gmedia vs Theta')
+pylab.savefig('gmedia_vs_theta')
+pylab.grid(True)
+pylab.show()
+
 
 
 for g in gmedia:
 	F.append(1 -((g)/(9.81)))  
-
 
 
 	
