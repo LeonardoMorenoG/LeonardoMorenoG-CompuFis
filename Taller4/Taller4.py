@@ -65,7 +65,7 @@ cont = 0
 cont2 = 0
 
 for row in table:	       
-	if row[1] not in angulo:
+	if row[1] not in angulo: #creo q sobra este if
 	       angulo.append(row[1])
 	
 
@@ -80,7 +80,7 @@ for ang in angulo:
 
 
 for g in gmedia:
-	F.append(1 -((g)/(9.81)))
+	F.append(1 -((g)/(9.81)))  
 
 
 
