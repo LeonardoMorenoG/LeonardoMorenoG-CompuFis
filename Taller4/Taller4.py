@@ -54,7 +54,7 @@ for filename in os.listdir('hw4_data/' ):
 			data.write( '%f ' % (ht))
 		data.write('\n')
 
-print 'information exported sucessfully in data.dat'
+print 'se importaron los datos de los arvhivos a data.dat'
 
 
 F=[]
@@ -65,7 +65,7 @@ cont = 0
 cont2 = 0
 
 for row in table:	       
-	if row[1] not in angulo: #creo q sobra este if
+	if row[1] not in angulo: 
 	       angulo.append(row[1])
 	
 
@@ -77,7 +77,7 @@ for ang in angulo:
 
        	cont /= 6.0
        	gmedia.append(cont)
-       	
+
 
 # grafica gmedia vs theta y lo guarda en el archivo 'gmedia_vs_theta.png'
 plt.plot(angulo, gmedia, '.')
@@ -89,14 +89,15 @@ plt.grid(True)
 plt.show()
 
 
+for g in gmedia:
+	F.append(1 -((g)/(9.81)))  
 
-for i in range(len(gmedia)):
-	F.append(1 -((gmedia[i])/(9.81)))  
 
 
 # hace un fit de los datos
 def fit(x, a, b):
-     return a*numpy.sin(numpy.deg2rad(x)) + b
+     return a*numpy.sin(numpy.deg2rad(x)) + b       	
+
 
 param = (scipy.optimize.curve_fit(fit, numpy.array(angulo), numpy.array(F)))[0]
 
@@ -116,11 +117,6 @@ plt.title('Residuo vs angulo')
 plt.savefig('Residuo_vs_angulo.png')
 plt.grid(True)
 plt.show()
-
-	
-
-
-
 
 
 
