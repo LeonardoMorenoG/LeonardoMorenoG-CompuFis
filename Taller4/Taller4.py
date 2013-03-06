@@ -5,6 +5,7 @@ import matplotlib.pyplot as plt
 import scipy
 from scipy.optimize import curve_fit
 from scipy.linalg import eigh
+from numpy import linalg as LA
 
 
 table = []
@@ -88,6 +89,28 @@ plt.savefig('gmedia_vs_theta')
 plt.grid(True)
 plt.show()
 
+
+# obtiene la matriz de covarianzas
+#1. Obtener el vector de los valores de la gravedad en cada exp.
+#2. Obtener el vector de los valores de la velocidad en x en cada exp.
+#3. Obtener el vector de los valores de la velocidad en y en cada exp.
+gravedad = []
+vSubx = []
+vSuby = []
+
+for row in table:
+    gravedad.append(row[4])
+    vSubx.append(row[2])
+    vSuby.append(row[3])
+
+M=numpy.vstack(((gravedad,vSubx),vSuby))
+Mcov = numpy.cov(M)
+print ("Matriz de Covarianzas: ")
+print numpy.cov(M)
+evals, evecs = LA.eig(Mcov)
+print ("Autovalores: ", evals)
+print ("Autovectores: ")
+print evecs
 
 for g in gmedia:
 	F.append(1 -((g)/(9.81)))  
