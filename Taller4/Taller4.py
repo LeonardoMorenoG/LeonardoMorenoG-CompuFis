@@ -1,7 +1,7 @@
 import os
 import numpy
 import sys
-#import pylab
+import pylab
 import scipy
 from scipy.optimize import curve_fit
 from scipy.linalg import eigh
