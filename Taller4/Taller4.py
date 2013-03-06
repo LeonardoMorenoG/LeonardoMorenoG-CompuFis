@@ -110,7 +110,7 @@ plt.grid(True)
 plt.show()
 
 # grafica residuo vs angulo y lo guarda en el archivo 'Residuo_vs_angulo.png'
-plt.plot(angulos, fit(angulos,parameters[0],parameters[1])-F, '.')
+plt.plot(angulos, fit(angulo,parameters[0],parameters[1])-F, '.')
 plt.xlabel('angulo (grados)')
 plt.ylabel('residuo (adimensiona)')
 plt.title('Residuo vs angulo')
