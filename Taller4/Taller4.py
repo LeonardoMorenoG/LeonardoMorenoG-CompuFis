@@ -81,7 +81,7 @@ for ang in angulo:
 
 # grafica gmedia vs theta y lo guarda en el archivo 'gmedia_vs_theta.png'
 plt.plot(angulo, gmedia, '.')
-plt.xlabel('the (degrees)')
+plt.xlabel('theta (degrees)')
 plt.ylabel('gmedia (m/s^2)')
 plt.title('gmedia vs Theta')
 plt.savefig('gmedia_vs_theta')
